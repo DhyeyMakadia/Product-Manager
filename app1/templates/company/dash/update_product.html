@@ -1,0 +1,83 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | Update Product</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Update Customer Details</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">update_customer</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Update Customer Details</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <div class="tab-content">
+            <div class="form-group row">
+              <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="nm1" class="form-control" id="inputName" value="{{ product.pro_nm }}" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <input type="number" name="pr1" class="form-control" id="inputEmail" value="{{ product.pro_pr }}" placeholder="Price">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputName2" class="col-sm-2 col-form-label">Quantity</label>
+              <div class="col-sm-10">
+                <input type="number" name="qty1" class="form-control" id="inputName2" value="{{ product.pro_qty }}" placeholder="Quantity">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputSkills" class="col-sm-2 col-form-label">Product Img</label>
+              <div class="col-sm-10">
+                <div>
+                  {% if product.pro_img %}
+                    <img src="{{ product.pro_img.url }}" alt="No image" width="100px">
+                  {% endif %}
+                </div>
+                <input type="file" name="img1" class="form-control" id="inputSkills" placeholder="Product Img">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Update Details</button>
+              </div>
+            </div>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</form>
+{% endblock %}

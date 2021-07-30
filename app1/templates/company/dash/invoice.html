@@ -1,0 +1,175 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | Invoice</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Invoice</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">invoice</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Main content -->
+        <div class="invoice p-3 mb-3">
+          <!-- title row -->
+          <div class="row">
+            <div class="col-12">
+              <h4>
+                <i class="fas fa-globe"></i> AdminLAB, Inc.
+                <small class="float-right">Date: {{ date }}</small>
+              </h4>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- info row -->
+          <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+              From
+              <address>
+                <strong>{{ Users.com_nm }}.</strong><br>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                Phone: (804) 123-4321<br>
+                Email: {{ Users.com_em }}
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              To
+              <address>
+                <strong>{{ cust1.cust_nm }}</strong><br>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                Phone: (555) 539-1037<br>
+                Email: {{ cust1.cust_em }}
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              <b>Invoice #007612</b><br>
+              <br>
+              <b>Order ID:</b> 4F3S8J<br>
+              <b>Payment Due:</b> {{ duedate }}<br>
+              <b>Account:</b> 968-34567
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- Table row -->
+          <div class="row">
+            <div class="col-12 table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr style="text-align: center;">
+                  <th>Qty</th>
+                  <th>Product</th>
+                  <th>Product ID #</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for i in obj %}
+                    <tr style="text-align: center;">
+                      <td>{{ i.qty }}</td>
+                      <td>{{ i }}</td>
+                      <td>{{ i.pro.id }}</td>
+                      <td>El snort testosterone trophy driving gloves handsome</td>
+                      <td>{{ i.pro.pro_pr }}</td>
+                      <td>${{ i.total_price }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-6">
+              <p class="lead">Payment Methods:</p>
+              <img src="{% static 'company/login/dist/img/credit/visa.png' %}" alt="Visa">
+              <img src="{% static 'company/login/dist/img/credit/mastercard.png' %}" alt="Mastercard">
+              <img src="{% static 'company/login/dist/img/credit/american-express.png' %}" alt="American Express">
+              <img src="{% static 'company/login/dist/img/credit/paypal2.png' %}" alt="Paypal">
+
+              <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
+                plugg
+                dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+              </p>
+            </div>
+            <!-- /.col -->
+            <div class="col-6">
+              <p class="lead">Amount Due {{ duedate }}</p>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <tr>
+                    <th style="width:50%">Subtotal:</th>
+                    <td>${{ subtotal }}</td>
+                  </tr>
+                  <tr>
+                    <th>Tax (9.3%)</th>
+                    <td>${{ tax }}</td>
+                  </tr>
+                  <tr>
+                    <th>Shipping:</th>
+                    <td>$5.80</td>
+                  </tr>
+                  <tr>
+                    <th>Total:</th>
+                    <td>${{ total }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- this row will not appear when printing -->
+          <div class="row no-print">
+            <div class="col-12">
+              <a href="{% url 'invoice_print' cust1.id %}" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+              <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                Payment
+              </button>
+              <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                <i class="fas fa-download"></i> Generate PDF
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- /.invoice -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section>
+
+{% endblock %}

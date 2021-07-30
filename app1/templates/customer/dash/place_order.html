@@ -1,0 +1,101 @@
+{% extends 'customer/dash/base.html' %}
+
+{% load static %}
+
+{% block Active1 %}
+<nav class="col-md-6 col-12 tm-nav">
+	<ul class="tm-nav-ul">
+		<li class="tm-nav-li"><a href="{% url 'customer_dashboard' %}" class="tm-nav-link">Home</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_order' %}" class="tm-nav-link">All Orders</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_contact' %}" class="tm-nav-link">Contact</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_logout' %}" class="tm-nav-link"><b style="color: springgreen;">Logout</b></a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block NewContent %}
+<main>
+	<header class="row tm-welcome-section">
+		<h2 class="col-12 text-center tm-section-title">Order details</h2>
+	</header>
+	
+<div style="margin-left:250px ;">
+				<form method="POST" class="tm-contact-form" autocomplete="off" enctype="multipart/form-data">
+					{% csrf_token %}
+					<table style="width: 700px;">
+
+						<tr>
+							<td style="padding-bottom: 4%; color: crimson;" colspan="2" align="center">
+								{% if error %}
+									<h3>ERROR: {{ error }}<br><small> (please enter valid quantity)</small></h3>
+								{% endif %}
+							</td>
+						</tr>
+
+						<tr>
+							<td style="padding-bottom: 4%;">
+								<label>Image</label>
+							</td>
+							<td style="padding-bottom: 4%;">
+									<div>
+										{% if prod.pro_img %}
+											<img src="{{ prod.pro_img.url }}" width="100px">
+										{% endif %}
+									</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="padding-bottom: 4%;">
+								<label>Name</label>
+							</td>
+							<td style="padding-bottom: 4%;">
+									<input type="text" name="nm1" class="form-control" placeholder="Name" value="{{ prod.pro_nm }}" disabled required/>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="padding-bottom: 4%;">
+								<label>Price</label>
+							</td>
+							<td style="padding-bottom: 4%;">
+									<input type="number" name="pr1" class="form-control" placeholder="Price" value="{{ prod.pro_pr }}" disabled required/>
+							</td>
+						</tr>
+			
+						<tr>
+							<td style="padding-bottom: 4%;">
+								<label>Available Quantity</label>
+							</td>
+							<td style="padding-bottom: 4%;">
+									<input type="text" name="qty1" class="form-control" placeholder="Available Quantity" value="{{ prod.pro_qty }}" disabled required/>
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="padding-bottom: 4%;">
+								<label>Enter Quantity you want</label>
+							</td>
+							<td style="padding-bottom: 4%;">
+									<input type="number" name="qty2" class="form-control" placeholder="Quantity" required/>
+							</td>
+						</tr>
+
+							<td colspan="2"><button type="submit" style="border-radius: 20px; color: black;" class="tm-btn tm-btn-default tm-right">
+								Place Order
+							</button></td>
+						</tr>
+					</table>
+				</form>
+</div>		
+</main>
+
+<footer class="tm-footer text-center">
+	<p>Copyright &copy; 2020 Simple House 
+	
+	| Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+</footer>
+{% endblock %}
+	
+
+	

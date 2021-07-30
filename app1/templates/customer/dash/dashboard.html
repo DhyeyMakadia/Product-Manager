@@ -1,0 +1,65 @@
+{% extends 'customer/dash/base.html' %}
+{% load static %}
+
+{% block Active1 %}
+<nav class="col-md-6 col-12 tm-nav">
+	<ul class="tm-nav-ul">
+		<li class="tm-nav-li"><a href="{% url 'customer_dashboard' %}" class="tm-nav-link active">Home</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_order' %}" class="tm-nav-link">All Orders</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_contact' %}" class="tm-nav-link">Contact</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_logout' %}" class="tm-nav-link"><b style="color: springgreen;">Logout</b></a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block NewContent %}
+<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Welcome to Simple House</h2>
+				<p class="col-12 text-center">Total 3 HTML pages are included in this template. Header image has a parallax effect. You can feel free to download, edit and use this TemplateMo layout for your commercial or non-commercial websites.</p>
+			</header>
+
+			<!-- Gallery -->
+			<div class="row tm-gallery">
+				<!-- gallery page 1 -->
+				<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+					{% for i in prod %}
+					<article class="col-12 tm-gallery-item">
+						<figure>
+							{% if i.pro_img %}
+							<a href="{% url 'place_order' i.id %}"><img src="{{ i.pro_img.url }}" alt="Image" style="max-height: 100px;" class="img-fluid tm-gallery-img" /></a>
+							{% endif %}
+							<figcaption>
+								<h4 class="tm-gallery-title"><a href="{% url 'place_order' i.id %}" style="text-decoration: none; color: black;">{{ i.pro_nm }}</a></h4>
+								<p class="tm-gallery-description">Nam in suscipit nisi, sit amet consectetur metus. Ut sit amet tellus accumsan</p>
+								<p class="tm-gallery-price">${{ i.pro_pr }}</p>
+							</figcaption>
+						</figure>
+					</article>
+					{% endfor %}
+				</div> <!-- gallery page 1 -->
+			</div>
+			<div class="tm-section tm-container-inner">
+				<div class="row">
+					<div class="col-md-6">
+						<figure class="tm-description-figure">
+							<img src="{% static 'company/login/dist/img/photo2.png' %}" style="height: 300px;width: 500px;" alt="Image" class="img-fluid" />
+						</figure>
+					</div>
+					<div class="col-md-6">
+						<div class="tm-description-box"> 
+							<h4 class="tm-gallery-title">Maecenas nulla neque</h4>
+							<p class="tm-mb-45">Redistributing this template as a downloadable ZIP file on any template collection site is strictly prohibited. You will need to <a rel="nofollow" href="https://templatemo.com/contact">talk to us</a> for additional permissions about our templates. Thank you.</p>
+							<a href="about.html" class="tm-btn tm-btn-default tm-right">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+</main>
+
+<footer class="tm-footer text-center">
+			<p>Copyright &copy; 2020 Simple House 
+            
+            | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+</footer>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | View Customer</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>View Customer</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">view_customer</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+<div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><b>Customer Details:</b></h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr style="text-align: center;">
+              <th style="width: 80px">Sr No.</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Register Date</th>
+              <th style="width: 150px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for i in obj reversed %}
+                <tr style="text-align: center;">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ i.cust_nm }}</td>
+                    <td>{{ i.cust_em }}</td>
+                    <td>{{ i.cust_cno }}</td>
+                    <td>{{ i.cust_join_date }}</td>
+                    <td><a href="{% url 'delete_customer' i.id %}" class="badge bg-danger">Delete</a>
+                    <a href="{% url 'update_customer' i.id %}" class="badge bg-success">Update</span></td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+</div>
+{% endblock %}

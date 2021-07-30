@@ -1,0 +1,70 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | View Product</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>View Product</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">view_product</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock Name %}
+
+{% block NewContent %}
+<div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><b>Product Details:</b></h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr style="text-align: center;">
+              <th style="width: 80px">Sr No.</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th style="width: 150px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for i in product reversed %}
+                <tr style="text-align: center;">
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                      {% if i.pro_img %}
+                        <img src="{{ i.pro_img.url }}" width="50px">
+                      {% else %}
+                       No image
+                      {% endif %}
+                      
+                    </td>
+                    <td>{{ i.pro_nm }}</td>
+                    <td>{{ i.pro_pr }}</td>
+                    <td>{{ i.pro_qty }}</td>
+                    <td><a href="{% url 'delete_product' i.id %}" class="badge bg-danger">Delete</a>
+                    <a href="{% url 'update_product' i.id %}" class="badge bg-success">Update</span></td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+</div>
+{% endblock NewContent %}

@@ -1,0 +1,78 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | Add Product</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Add Product</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">add_product</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Add Product</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <div class="tab-content">
+          <form method="POST" class="form-horizontal" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="nm1" class="form-control" id="inputName" placeholder="Name of Product" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Price</label>
+              <div class="col-sm-10">
+                <input type="number" name="pr1" class="form-control" id="inputEmail" placeholder="Price" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputName2" class="col-sm-2 col-form-label">Quantity</label>
+              <div class="col-sm-10">
+                <input type="number" name="qty1" class="form-control" id="inputName2" placeholder="Quantity" required>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="inputSkills" class="col-sm-2 col-form-label">Product Img</label>
+              <div class="col-sm-10">
+                <input type="file" name="img1" class="form-control" id="inputSkills" placeholder="Product Img" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Add Product</button>
+              </div>
+            </div>
+          </form>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+
+
+.container1 {
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.responsive-taable li {
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.responsive-taable .taable-header {
+  background-color: #95A5A6;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.responsive-taable .taable-row {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+.responsive-taable .col-1 {
+  flex-basis: 10%;
+}
+.responsive-taable .col-2 {
+  flex-basis: 20%;
+}
+.responsive-taable .col-3 {
+  flex-basis: 15%;
+}
+.responsive-taable .col-4 {
+  flex-basis: 15%;
+}
+.responsive-taable .col-5 {
+  flex-basis: 30%;
+}
+.responsive-taable .col-6 {
+  flex-basis: 10%;
+}
+@media all and (max-width: 767px) {
+  .responsive-taable .taable-header {
+    display: none;
+  }
+  .responsive-taable li {
+    display: block;
+  }
+  .responsive-taable .col {
+    flex-basis: 100%;
+  }
+  .responsive-taable .col {
+    display: flex;
+    padding: 10px 0;
+  }
+  .responsive-taable .col:before {
+    color: #6C7A89;
+    padding-right: 10px;
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: right;
+  }
+}

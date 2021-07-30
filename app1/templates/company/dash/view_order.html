@@ -1,0 +1,65 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | View Order</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>View Orders</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">view_order</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+<div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><b>Order Details:</b></h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr style="text-align: center;">
+              <th style="width: 80px">Sr No.</th>
+              <th>Customer Name</th>
+              <th>Product Name</th>
+              <th>QTY</th>
+              <th>Total price</th>
+              <th>Order Date</th>
+              <th style="width: 150px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for i in obj reversed %}
+                <tr style="text-align: center;">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ i.cust.cust_nm }}</td>
+                    <td>{{ i.pro.pro_nm }}</td>
+                    <td><b>{{ i.qty }}</b> ({{ i.pro.pro_qty }})<sub>total</sub></td>
+                    <td>{{ i.total_price }}</td>
+                    <td>{{ i.order_date }}</td>
+                    <td><a href="{% url 'order_accepted' i.id %}" class="badge bg-success">Accept</a>
+                        <a href="{% url 'order_rejected' i.id %}" class="badge bg-danger">Deny</a></td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+</div>
+{% endblock %}

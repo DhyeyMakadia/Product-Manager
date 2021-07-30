@@ -1,0 +1,68 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | Order List</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>List of all accepted Orders:</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">order_list_p</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><b><big style="color:darkcyan;">{{ cust1 }}</big></b></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <table class="table">
+        <thead>
+          <tr style="text-align: center;">
+            <th style="width: 80px">Sr No.</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in ord reversed %}
+              <tr style="text-align: center;">
+                  <td>{{forloop.counter}}</td>
+                  <td>{{ i }}</td>
+                  <td>${{ i.pro.pro_pr }}</td>
+                  <td>{{ i.qty }}</td>
+                  <td>${{ i.total_price }}</td>
+              </tr>
+            {% endfor %}
+            <tr style="text-align: center; background-color: rgb(231, 230, 230);">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><b>${{ total }}</b></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <button type="submit" class="btn-success" onclick="window.location.href='{% url 'invoice' cust1.id %}'" style="border-radius: 20px;">Generate bill</button>
+</div>
+{% endblock %}

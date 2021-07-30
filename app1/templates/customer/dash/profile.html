@@ -1,0 +1,103 @@
+{% extends 'customer/dash/base.html' %}
+
+{% load static %}
+
+{% block Active1 %}
+<nav class="col-md-6 col-12 tm-nav">
+	<ul class="tm-nav-ul">
+		<li class="tm-nav-li"><a href="{% url 'customer_dashboard' %}" class="tm-nav-link">Home</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_order' %}" class="tm-nav-link">All Orders</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_contact' %}" class="tm-nav-link">Contact</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_logout' %}" class="tm-nav-link"><b style="color: springgreen;">Logout</b></a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block NewContent %}
+<main>
+	<header class="row tm-welcome-section">
+		<h2 class="col-12 text-center tm-section-title">Profile</h2>
+	</header>
+
+<div style="margin-left:250px ;">
+				<form method="POST" class="tm-contact-form" autocomplete="off" enctype="multipart/form-data">
+					{% csrf_token %}
+					<table style="width: 700px;">
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Name</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<input type="text" name="nm1" class="form-control" placeholder="Name" value="{{ obj.cust_nm }}" required/>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Email</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<input type="email" name="em1" class="form-control" placeholder="Email" value="{{ obj.cust_em }}" required/>
+							</td>
+						</tr>
+			
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Password</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<input type="text" name="pass1" class="form-control" placeholder="Password" value="{{ obj.cust_pass }}" required/>
+							</td>
+						</tr>
+				
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Profile</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<div>
+										{% if obj.cust_profile %}
+											<img src="{{ obj.cust_profile.url }}" width="100px">
+										{% endif %}
+									</div>
+									<input type="file" name="img1" class="form-control" placeholder="Profile"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Contact</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<input type="number" name="cno" class="form-control" placeholder="Contact" value="{{ obj.cust_cno }}"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="padding-bottom: 8%;">
+								<label>Address</label>
+							</td>
+							<td style="padding-bottom: 8%;">
+									<textarea rows="1" name="add1" class="form-control" placeholder="Address">{{ obj.cust_add }}</textarea>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="2"><button type="submit" style="border-radius: 20px; color: black;" class="tm-btn tm-btn-default tm-right">
+							Update Profile
+							</button></td>
+						</tr>
+					</table>
+				</form>
+</div>		
+</main>
+
+<footer class="tm-footer text-center">
+	<p>Copyright &copy; 2020 Simple House 
+	
+	| Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+</footer>
+{% endblock %}
+	
+
+	

@@ -1,0 +1,78 @@
+{% extends 'customer/dash/base.html' %}
+{% load static %}
+
+{% block Active1 %}
+<nav class="col-md-6 col-12 tm-nav">
+	<ul class="tm-nav-ul">
+		<li class="tm-nav-li"><a href="{% url 'customer_dashboard' %}" class="tm-nav-link">Home</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_order' %}" class="tm-nav-link active">All Orders</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_contact' %}" class="tm-nav-link">Contact</a></li>
+		<li class="tm-nav-li"><a href="{% url 'customer_logout' %}" class="tm-nav-link"><b style="color: springgreen;">Logout</b></a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block NewContent %}
+
+<main>
+	<header class="row tm-welcome-section">
+		<h2 class="col-12 text-center tm-section-title">About Simple House</h2>
+		<p class="col-12 text-center">This is about page of simple house template. 
+		You can modify and use this HTML template for your website. Total 3 HTML pages included in this template. Header image has a parallax effect.</p>
+	</header>
+
+	<div>
+		<!-- <p class="tm-site-title" style="margin-left: 45px; font-size:large;">All Orders of {{ obj.cust_nm }}</p> -->
+		<div class="container1">
+			<ul class="responsive-taable">
+			  <li class="taable-header">
+				<div class="col col-1">SR No.</div>
+				<div class="col col-2">Product Name</div>
+				<div class="col col-3">Quantity</div>
+				<div class="col col-4">Total Price</div>
+				<div class="col col-5">Order Date</div>
+				<div class="col col-6">Status</div>
+			  </li>
+			  {% for i in ord %}
+			  <li class="taable-row">
+				<div class="col col-1">{{ forloop.counter }}</div>
+				<div class="col col-2">{{ i.pro.pro_nm }}</div>
+				<div class="col col-3">{{ i.qty }}</div>
+				<div class="col col-4">{{ i.total_price }}</div>
+				<div class="col col-5">{{ i.order_date }}</div>
+				<div class="col col-6">
+					{% if i.status == 'pending' %}
+					<p style="background-color: rgb(0, 168, 173); display: inline-block;padding: 0.25em 0.4em;font-size: 75%;font-weight: 700;line-height: 1;text-align: center;white-space: nowrap; vertical-align: baseline;border-radius: 0.25rem;transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;color: white;">Pending</p>
+					{% elif i.status == 'accepted' %}
+					<p style="background-color: rgb(5, 158, 0); display: inline-block;padding: 0.25em 0.4em;font-size: 75%;font-weight: 700;line-height: 1;text-align: center;white-space: nowrap; vertical-align: baseline;border-radius: 0.25rem;transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;color: white;">Accepted</p>
+					{% elif i.status == 'rejected' %}
+					<p style="background-color: rgb(216, 0, 0); display: inline-block;padding: 0.25em 0.4em;font-size: 75%;font-weight: 700;line-height: 1;text-align: center;white-space: nowrap; vertical-align: baseline;border-radius: 0.25rem;transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;color: white;">Declined</p>
+					{% endif %}
+				</div>
+			  </li>
+			  {% endfor %}
+			</ul>
+		</div>
+	</div>
+
+	<!-- <div class="tm-container-inner tm-featured-image">
+		<div class="row">
+			<div class="col-12">
+				<div class="placeholder-2">
+					<div class="parallax-window-2" data-parallax="scroll" data-image-src="{% static 'customer/dash/img/about-05.jpg' %}"></div>		
+				</div>
+			</div>
+		</div>
+	</div> -->
+</main>
+
+<footer class="tm-footer text-center">
+	<p>Copyright &copy; 2020 Simple House 
+	
+	| Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+</footer>
+
+
+
+{% endblock %}
+	

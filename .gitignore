@@ -1,0 +1,5 @@
+media/
+db.sqlite3
+Product_Manager
+app1/migrations/
+*.log

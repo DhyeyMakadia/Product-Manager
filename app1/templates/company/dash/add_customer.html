@@ -1,0 +1,87 @@
+{% extends 'company/dash/base.html' %}
+{% load static %}
+
+{% block title1 %}
+  <title>AdminLAB | Add Customer</title>
+{% endblock title1 %}
+
+{% block Name %}
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Add Customer</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+          <li class="breadcrumb-item active">add_customer</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+{% endblock %}
+
+{% block NewContent %}
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Add Customer</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <div class="tab-content">            
+            {% if error %}
+              <div class="text-danger">{{ error }}error here</div>
+            {% endif %}
+            <div class="form-group row">
+              <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="nm1" class="form-control" id="inputName" placeholder="Name" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" name="em1" class="form-control" id="inputEmail" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputName2" class="col-sm-2 col-form-label">Contact</label>
+              <div class="col-sm-10">
+                <input type="number" name="cno" class="form-control" id="inputName2" placeholder="Contact">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
+              <div class="col-sm-10">
+                <textarea name="add1" class="form-control" id="inputExperience" placeholder="Address"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputSkills" class="col-sm-2 col-form-label">Profile</label>
+              <div class="col-sm-10">
+                <input type="file" name="prof1" class="form-control" id="inputSkills" placeholder="Profile">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Add Customer</button>
+              </div>
+            </div>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</form>
+{% endblock %}
